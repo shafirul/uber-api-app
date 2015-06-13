@@ -16,6 +16,8 @@
 
 <h1>DUIs Are Expensive: An App Using the Uber API</h1>
 
+<div id="container">
+
 <form id="address-form" action="/results">
 
 	<h1>Hey, where you at?</h1>
@@ -36,7 +38,58 @@
 
 </div>
 
+<script type="text/javascript">
 
+console.log("It got here I guess")
+
+$('#address-form').on('submit', createBacForm);
+
+function createBacForm(evt) {
+
+	evt.preventDefault();
+
+	$('#container').empty();
+
+	//create a form
+	var f = document.createElement('form');
+	f.setAttribute('method','get');
+	f.setAttribute('action','/results');
+
+//create input element
+	var i = document.createElement('input');
+	i.label = "How much do you weigh?";
+	i.type = 'text';
+	i.name = 'weight';
+
+//create a checkbox
+	var o = document.createElement("input");
+	o.label = "What is your sex?";
+	o.type = 'select';
+	o.name = 'sex';
+	o.option = ['Female', 'Male'];
+
+//create a button
+	var s = document.createElement('input');
+	s.type = 'submit';
+	s.value = "Submit";
+
+// add all elements to the form
+	f.appendChild(i);
+
+	f.appendChild(o);
+		for (x in o.option) {
+			console.log(x);
+		}
+
+	f.appendChild(s);
+
+// add the form inside the body
+	$('#container').append(f);
+
+	console.log("It happened")
+	}
+
+</script>
 
 <!-- 	<ul>
 		<li>How many drinks have you had?

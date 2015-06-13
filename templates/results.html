@@ -10,16 +10,44 @@
 
 <body>
 
-<h1>You know the routine: Hello world.</h1>
+<h1>DUIs Are Epxensive</h1>
 
-<ul>
-	<li>You've had {{ drinks }}oz of alcohol.</li>
-	<li>You weigh {{ weight }}lbs</li>
-	<li>You are a {{ sex }}</li>
-	<li>You've been drinking for {{ hours }} hours</li>
-</ul>
+<form id="bac-inputs" action="/calculation">
+	
+	<ul>
+		<li>
+			<label>How many drinks have you had?
+				<select name='drinks'>
+				<option value='1'>1</option>
+				<option value='2'>2</option>
+				<option value='3'>4</option>
+				<option value='5'>5</option>
+				<option value='6'>6</option>
+				<option value='7'>7</option>
+				<option value='8'>8</option>
+				<option value='9'>9</option>
+				<option value='10'>10</option>
+				</select>
+			</label>
+		</li>
 
-This is your blood alcohol content: {{ bac }}
+		<li><label>How much do you weigh?<input type="text" name="weight"></label>
+		</li>
+		
+		<li><label>What's your sex?</label>
+			<select name="sex">
+				<option value="female">Female</option>
+				<option value="male">Male</option>
+			</select>
+		</li>
+
+		<li><label>How many hours have you been drinking?<input type="text" name="hours"></label>
+		</li>
+		
+		<li><input type="submit">
+		</ul>
+
+</form>
 
 </body>
 
