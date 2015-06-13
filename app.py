@@ -3,12 +3,16 @@ from pygeocoder import Geocoder
 import working
 
 from flask import Flask, request, session, render_template, g, redirect, url_for, flash, jsonify
+from flask.ext.session import Session
 import os
 import jinja2
 import random
 import json
 
+SESSION_TYPE = 'filesystem'
+
 app = Flask(__name__)
+sess = Session()
 
 @app.route("/")
 def start_here():
@@ -18,8 +22,6 @@ def start_here():
 def determine_estimate():
 
 	uber_prices = []
-	uber_price = {}
-	i = 0
 
 ### Gets addresses, converts them to coordinates, saves them, requests estimates from API
 
@@ -40,31 +42,15 @@ def determine_estimate():
 
 	services_and_prices = estimate['prices']
 
-	print services_and_prices
-
-	# for item in services_and_prices:
-	# 	print item
-
-	# for item in services_and_prices:
-	# 	uber_price['service'] = item['display_name']
-	# 	uber_price['price'] = item['estimate']
-	# 	uber_prices.append(uber_price)
-
-
 	for i in range(len(services_and_prices)):
-		print i
+		uber_price = {}
 		uber_price['service'] = services_and_prices[i]['display_name']
 		uber_price['price'] = services_and_prices[i]['estimate']
 		uber_prices.append(uber_price)
 
+	# print uber_prices
 
-	print uber_prices
-
-	# uber_prices.append(uber_price)
-
-	# print uber_prices 
-
-	# print json.dumps(estimate, sort_keys=True, indent=4, separators=(',', ': '))
+	session['user_travel'] = uber_prices
 
 	return render_template("results.html")
 
@@ -100,19 +86,28 @@ def determine_bac():
 @app.route('/comparison')
 def response():
 
-	dui_cost = "$15,000"
 	user_response = request.args.get('user_response')
+	user_estimate = session.get('user_travel')
 
-	print user_response
+	dui_cost = "$15,000"
 
-	print estimate
+	print user_estimate
+
+	print 
 
 	if user_response == "But Ubers are expensive":
 		message = {'how_expensive': "Not nearly as expensive as a DUI", 'uber': "The price of an Uber:", 'vs':"versus", 'dui': "The price of an average DUI: $15,000"}
 	else:
 		message = {'how_expensive': "Look at how much money you'll save!", 'uber': "The price of an Uber:", 'vs':"versus", 'dui': "The price of an average DUI: $15,000"}
 
-	return render_template('comparison.html', message=message)
+	return render_template('comparison.html', message=message, user_estimate=user_estimate)
 
 if __name__ == "__main__":
-    app.run(debug=True, port=8000, host="0.0.0.0")
+
+	app.secret_key = 'super secret key'
+	app.config['SESSION_TYPE'] = 'filesystem'
+
+	sess.init_app(app)
+
+	app.debug = True
+	app.run(debug=True, port=8000, host="0.0.0.0")
