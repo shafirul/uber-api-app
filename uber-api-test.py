@@ -21,8 +21,8 @@ print json.dumps(uber_products, sort_keys=True, indent=4, separators=(',', ': ')
 ### This is a fix for the problem that arose from the geocode lbirary, fixes SSL restrictions. See site for more details: https://urllib3.readthedocs.org/en/latest/security.html#pyopenssl
 
 try:
-    import urllib3.contrib.pyopenssl
-    urllib3.contrib.pyopenssl.inject_into_urllib3()
+	import urllib3.contrib.pyopenssl
+	urllib3.contrib.pyopenssl.inject_into_urllib3()
 except ImportError:
     pass
 
@@ -31,8 +31,8 @@ except ImportError:
 start_lat = Geocoder.geocode("180 Townsend Street, San Francisco, CA 94107")[0].coordinates[0]
 start_long = Geocoder.geocode("180 Townsend Street, San Francisco, CA 94107")[0].coordinates[1]
 
-end_lat = Geocoder.geocode("	1737 Haight St, San Francisco, CA 94117")[0].coordinates[0]
-end_long = Geocoder.geocode("	1737 Haight St, San Francisco, CA 94117")[0].coordinates[1]
+end_lat = Geocoder.geocode("1737 Haight St, San Francisco, CA 94117")[0].coordinates[0]
+end_long = Geocoder.geocode("1737 Haight St, San Francisco, CA 94117")[0].coordinates[1]
 
 
 estimate = AUTH.get_price_estimate(start_lat, start_long, end_lat, end_long)
