@@ -110,9 +110,9 @@ def response():
 	print 
 
 	if user_response == "But Ubers are expensive":
-		message = {'how_expensive': "Not nearly as expensive as a DUI!", 'uber': "The price of an Uber:", 'vs':"versus", 'dui': "The price of an average DUI: $15,000"}
+		message = {'how_expensive': "Not nearly as expensive as a DUI!", 'uber': "The price of an Uber:", 'vs':"versus", 'dui': "The average price of a DUI: $15,000"}
 	else:
-		message = {'how_expensive': "Look at how much money you'll save!", 'uber': "The price of an Uber:", 'vs':"versus", 'dui': "The price of an average DUI: $15,000"}
+		message = {'how_expensive': "Look at how much money you'll save!", 'uber': "The price of an Uber:", 'vs':"versus", 'dui': "The average price of a DUI: $15,000"}
 
 	return render_template('comparison.html', message=message, user_estimate=user_estimate)
 
