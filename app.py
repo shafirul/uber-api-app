@@ -33,32 +33,39 @@ def determine_estimate():
 	except ImportError:
 		pass
 
-	if Geocoder.geocode(app_start_address).valid_address and Geocoder.geocode(app_end_address).valid_address is True:
-	
-		start_lat = Geocoder.geocode(app_start_address)[0].coordinates[0]
-		start_long = Geocoder.geocode(app_start_address)[0].coordinates[1]
-	
-		end_lat = Geocoder.geocode(app_end_address)[0].coordinates[0]
-		end_long = Geocoder.geocode(app_end_address)[0].coordinates[1]
+	try:
 
-		AUTH = Uber(working.client_id, working.server_token, working.secret)
+		if Geocoder.geocode(app_start_address).valid_address and Geocoder.geocode(app_end_address).valid_address is True:
+		
+			start_lat = Geocoder.geocode(app_start_address)[0].coordinates[0]
+			start_long = Geocoder.geocode(app_start_address)[0].coordinates[1]
+		
+			end_lat = Geocoder.geocode(app_end_address)[0].coordinates[0]
+			end_long = Geocoder.geocode(app_end_address)[0].coordinates[1]
 
-		estimate = AUTH.get_price_estimate(start_lat, start_long, end_lat, end_long)
+			AUTH = Uber(working.client_id, working.server_token, working.secret)
 
-		services_and_prices = estimate['prices']
+			estimate = AUTH.get_price_estimate(start_lat, start_long, end_lat, end_long)
 
-		for i in range(len(services_and_prices)):
-			uber_price = {}
-			uber_price['service'] = services_and_prices[i]['display_name']
-			uber_price['price'] = services_and_prices[i]['estimate']
-			uber_prices.append(uber_price)
+			services_and_prices = estimate['prices']
 
-		session['user_travel'] = uber_prices
+			for i in range(len(services_and_prices)):
+				uber_price = {}
+				uber_price['service'] = services_and_prices[i]['display_name']
+				uber_price['price'] = services_and_prices[i]['estimate']
+				uber_prices.append(uber_price)
 
-		return render_template("results.html")
+			session['user_travel'] = uber_prices
 
-	else:
+			return render_template("results.html")
 
+		else:
+
+			message = "Something went wrong. Please make sure you entered valid addresses."
+
+			return render_template("index.html",  message=message)
+
+	except:
 		message = "Something went wrong. Please make sure you entered valid addresses."
 
 		return render_template("index.html",  message=message)

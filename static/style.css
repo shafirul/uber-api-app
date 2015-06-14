@@ -1,0 +1,34 @@
+button,
+input,
+optgroup,
+select,
+textarea {
+  margin: 0;
+  font: inherit;
+  color: black;
+}
+
+#error-message {
+	color: red;
+}
+
+#estimates li {
+	list-style-type: none;
+	font-family: "Open Sans","Helvetica Neue",Arial,sans-serif;
+	font-weight: 700;
+}
+
+.blink {
+  animation: blink 1s steps(5, start) infinite;
+  -webkit-animation: blink 1s steps(5, start) infinite;
+}
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+@-webkit-keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
