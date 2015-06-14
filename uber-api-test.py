@@ -34,6 +34,10 @@ start_long = Geocoder.geocode("180 Townsend Street, San Francisco, CA 94107")[0]
 end_lat = Geocoder.geocode("1737 Haight St, San Francisco, CA 94117")[0].coordinates[0]
 end_long = Geocoder.geocode("1737 Haight St, San Francisco, CA 94117")[0].coordinates[1]
 
+start_lat_test = Geocoder.geocode("poop").valid_address
+
+print start_lat_test
+
 
 estimate = AUTH.get_price_estimate(start_lat, start_long, end_lat, end_long)
 

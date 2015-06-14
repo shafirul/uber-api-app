@@ -10,11 +10,27 @@
 
 <body>
 
-<h1>Comparison</h1>
+<h1>DUIs Are Expensive: An App Using the Uber API</h1>
 
-{{ message.how_expensive }}
+<h3>{{ message.how_expensive }}<h3>
 
-<p>{{ user_estimate }}</p>
+<h3>An Uber might cost you:</h3>
+
+<ul id='estimates'>
+{% for item in user_estimate %}
+    <li>{{ item.service }} : {{ item.price }}</li>
+{% endfor %}
+</ul>
+
+<h3 id='dui'>{{ message.dui }}</h3>
+
+<button type='button' disabled>Get an Uber</button><br>(Feature coming soon!)
+
+<p>
+	<form action='/'>
+	<input type='submit' name='/' value="Start over">
+	</form>
+</p>
 
 </body>
 

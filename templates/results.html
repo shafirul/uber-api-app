@@ -10,42 +10,39 @@
 
 <body>
 
-<h1>DUIs Are Epxensive</h1>
+<h1>DUIs Are Expensive: An App Using the Uber API</h1>
+
+<div id="error_message">{{ message }}</div>
 
 <form id="bac-inputs" action="/calculation">
 	
-	<ul>
-		<li>
-			<label>How many drinks have you had?
-				<select name='drinks'>
-				<option value='1'>1</option>
-				<option value='2'>2</option>
-				<option value='3'>4</option>
-				<option value='5'>5</option>
-				<option value='6'>6</option>
-				<option value='7'>7</option>
-				<option value='8'>8</option>
-				<option value='9'>9</option>
-				<option value='10'>10</option>
-				</select>
-			</label>
-		</li>
+<h3><label>How many drinks have you had?
+	<select name='drinks'>
+	<option value='1'>1</option>
+	<option value='2'>2</option>
+	<option value='3'>4</option>
+	<option value='5'>5</option>
+	<option value='6'>6</option>
+	<option value='7'>7</option>
+	<option value='8'>8</option>
+	<option value='9'>9</option>
+	<option value='10'>10</option>
+	</select>
+</label></h3>
 
-		<li><label>How much do you weigh?<input type="text" name="weight"></label>
-		</li>
+<h3><label>How much do you weigh? (In pounds.)
+	<input type="text" name="weight"></label></h1>
 		
-		<li><label>What's your sex?</label>
-			<select name="sex">
-				<option value="female">Female</option>
-				<option value="male">Male</option>
-			</select>
-		</li>
+<h3><label>What's your sex?
+	<select name="sex">
+		<option value="female">Female</option>
+		<option value="male">Male</option>
+	</select>
+</label></h3>
 
-		<li><label>How many hours have you been drinking?<input type="text" name="hours"></label>
-		</li>
+<h3><label>How many hours have you been drinking? <input type="text" name="hours"></label></h3>
 		
-		<li><input type="submit">
-		</ul>
+<input type="submit" value="What's my blood alcohol content?">
 
 </form>
 

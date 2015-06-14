@@ -5,10 +5,6 @@
 <head>
 
 	<meta charset="utf-8">
-<!-- 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1"> -->
-
-	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 
 </head>
 
@@ -16,51 +12,22 @@
 
 <h1>DUIs Are Expensive: An App Using the Uber API</h1>
 
-<form id="address-form" action="/results">
+<div id="error_message">{{ message }}</div>
 
-	<h1>Hey, where you at?</h1>
+<form id="address-form" action="/location">
 
-		<label>Enter your current address:
-			<input type="text" name="start_address">
-		</label>
+<h3><label>Enter your current address:
+	<input type="text" name="start_address">
+</label></h3>
 
-	<h1>Where ya going?</h1>
 
-		<label>Enter your destination address:
-			<input type="text" name="end_address">
-		</label>
+<h3><label>Enter your destination address:
+	<input type="text" name="end_address">
+</label></h3>
 
-	<button type="submit" id="address-inputs">Click</button>
+<input type="submit" value="All right here we go">
 
 </form>
-
-</div>
-
-
-
-<!-- 	<ul>
-		<li>How many drinks have you had?
-			<ul>
-				<li>
-					<label>Beer?<input type="text" name="beer"></label>
-		</li>
-
-		<li><label>How much do you weigh?<input type="text" name="weight"></label>
-		</li>
-		
-		<li><label>What's your sex?</label>
-			<select name="sex">
-				<option value="female">Female</option>
-				<option value="male">Male</option>
-			</select>
-		</li>
-
-		<li><label>How many hours have you been drinking?<input type="text" name="hours"></label>
-		</li>
-		
-		<li><input type="submit">
-		</li>
-</form> -->
 
 </body>
 
