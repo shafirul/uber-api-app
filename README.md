@@ -1,0 +1,3 @@
+# DUIs Are Expensive: An App Using the Uber API
+
+This app uses the Uber API to request the estimates of Uber services accordind to a user's starting and ending addresses. The app also calculates a user's blood alcohol content (BAC), and suggests the user call an Uber if their BAC is over the legal limit. If the user says an Uber is too epensive, the app compares the estimates to the average price of a DUI. 
