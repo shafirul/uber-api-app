@@ -81,13 +81,13 @@ def determine_bac():
 
 	try:
 
-		beer = float(request.args.get('beer')) * 12
+		beer = float(request.args.get('beer')) * 12 * .05
 
-		wine = float(request.args.get('wine')) * 5
+		wine = float(request.args.get('wine')) * 5 * .12
 
-		cocktails = float(request.args.get('cocktails')) * 1.5
+		cocktails = float(request.args.get('cocktails')) * 1.5 * .40
 
-		drinks = (beer + wine + cocktails) * .06
+		drinks = float(beer + wine + cocktails)
 
 		weight = float(request.args.get('weight'))
 		sex = request.args.get('sex')
@@ -98,7 +98,7 @@ def determine_bac():
 		else:
 			ratio = .73
 
-		bac = float((drinks * (5.14/weight) * ratio) - (.015 * hours)) 
+		bac = float((drinks * (5.14/(weight * ratio)) - (.015 * hours)))
 
 		print "NUMBERS****", drinks, weight, sex, hours, ratio, bac
 
