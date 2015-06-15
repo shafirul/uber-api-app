@@ -2,7 +2,7 @@
 
 This is a simple Python/Flask app that uses the Uber API to request the estimates of Uber services according to a user's starting and ending addresses. The app also calculates a user's blood alcohol content (BAC), and suggests the user call an Uber if their BAC is over the legal limit. If the user says an Uber is too epensive, the app compares the estimates to the average price of a DUI.
 
-https://github.com/liz-acosta/uber-api-app/blob/master/duis-are-expensive.gif
+![DUIs Are Expensive](https://github.com/liz-acosta/uber-api-app/blob/master/duis-are-expensive.gif)
 
 # How To Use This App
 
