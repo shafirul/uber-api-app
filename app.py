@@ -20,18 +20,22 @@ def start_here():
 @app.route("/location")
 def determine_estimate():
 
-### Gets addresses, converts them to coordinates, saves them, requests estimates from API
+### Gets addresses, converts them to coordinates, requests estimates from API, creates dictionary, saves to a session to use later
 
 	uber_prices = []
 
 	app_start_address = request.args.get('start_address')
 	app_end_address = request.args.get('end_address')
 
+### This is a fix for the problem that arose from the geocode lbirary, fixes SSL restrictions. See site for more details: https://urllib3.readthedocs.org/en/latest/security.html#pyopenssl
+
 	try:
 		import urllib3.contrib.pyopenssl
 		urllib3.contrib.pyopenssl.inject_into_urllib3()
 	except ImportError:
 		pass
+
+### If the server receives correct input, it will convert to coordinates, make reuqest from Uber API, if not it will display an error message
 
 	try:
 
@@ -70,8 +74,6 @@ def determine_estimate():
 
 		return render_template("index.html",  message=message)
 
-### Returns a dictionary = {'estimate': value, 'bac': value, 'dui': static value, 'message': value}
-
 @app.route("/calculation")
 def determine_bac():
 
@@ -79,7 +81,14 @@ def determine_bac():
 
 	try:
 
-		drinks = float(request.args.get('drinks')) * .6
+		beer = float(request.args.get('beer')) * 12
+
+		wine = float(request.args.get('wine')) * 5
+
+		cocktails = float(request.args.get('cocktails')) * 1.5
+
+		drinks = (beer + wine + cocktails) * .06
+
 		weight = float(request.args.get('weight'))
 		sex = request.args.get('sex')
 		hours = float(request.args.get('hours'))
@@ -89,7 +98,9 @@ def determine_bac():
 		else:
 			ratio = .73
 
-		bac = float((drinks * 5.14/weight * ratio) - .015 * hours) 
+		bac = float((drinks * (5.14/weight) * ratio) - (.015 * hours)) 
+
+		print "NUMBERS****", drinks, weight, sex, hours, ratio, bac
 
 		if bac >= .08:
 			page = "get-uber.html"
@@ -106,6 +117,8 @@ def determine_bac():
 
 @app.route('/comparison')
 def response():
+
+### Response returns a different messages depending on what option User clicks
 
 	user_response = request.args.get('user_response')
 	user_estimate = session.get('user_travel')
