@@ -15,7 +15,7 @@ This is a simple Python/Flask app that uses the Uber API to request the estimate
 
 # Challenges And Future Builds
 
-Attempted deployment, still working out bugs. I think I probably have my environment variables set up incorrectly.
+Attempted deployment, still working out bugs. I think I probably have my environment variables set up incorrectly. I AM SO CLOSE THOUGH!
 
 Eventually, the app will be able to request an Uber for the user.
 
