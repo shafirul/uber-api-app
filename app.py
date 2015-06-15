@@ -2,11 +2,13 @@ from uberpy import Uber
 from pygeocoder import Geocoder
 import working
 
-from flask import Flask, request, session, render_template, g, redirect, url_for, flash, jsonify
-from flask.ext.session import Session
 import os
 import jinja2
 import json
+import ENV
+
+from flask import Flask, request, session, render_template, g, redirect, url_for, flash, jsonify
+from flask.ext.session import Session
 
 SESSION_TYPE = 'filesystem'
 
@@ -47,7 +49,7 @@ def determine_estimate():
 			end_lat = Geocoder.geocode(app_end_address)[0].coordinates[0]
 			end_long = Geocoder.geocode(app_end_address)[0].coordinates[1]
 
-			AUTH = Uber(working.client_id, working.server_token, working.secret)
+			AUTH = Uber(ENV.client_id, ENV.server_token, ENV.secret)
 
 			estimate = AUTH.get_price_estimate(start_lat, start_long, end_lat, end_long)
 
@@ -138,7 +140,7 @@ def response():
 
 if __name__ == "__main__":
 
-	app.secret_key = working.secret_key
+	app.secret_key = ENV.secret_key
 	app.config['SESSION_TYPE'] = 'filesystem'
 
 	sess.init_app(app)
