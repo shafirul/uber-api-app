@@ -30,23 +30,27 @@ def determine_estimate():
 
 ### This is a fix for the problem that arose from the geocode lbirary, fixes SSL restrictions. See site for more details: https://urllib3.readthedocs.org/en/latest/security.html#pyopenssl
 
-	try:
-		import urllib3.contrib.pyopenssl
-		urllib3.contrib.pyopenssl.inject_into_urllib3()
-	except ImportError:
-		pass
+	# try:
+	# 	import urllib3.contrib.pyopenssl
+	# 	urllib3.contrib.pyopenssl.inject_into_urllib3()
+	# except ImportError:
+	# 	pass
 
 ### If the server receives correct input, it will convert to coordinates, make reuqest from Uber API, if not it will display an error message
 
 	# try:
 
-	if Geocoder.geocode(app_start_address).valid_address and Geocoder.geocode(app_end_address).valid_address is True:
+	if Geocoder.geocode(app_start_address).valid_address and Geocoder.geocode(app_end_address).valid_address:
 	
-		start_lat = Geocoder.geocode(app_start_address)[0].coordinates[0]
-		start_long = Geocoder.geocode(app_start_address)[0].coordinates[1]
+		start_coordinates = Geocoder.geocode(app_start_address)[0].coordinates
+
+		end_coordinates = Geocoder.geocode(app_end_address)[0].coordinates
+
+		start_lat = start_coordinates[0]
+		start_long = start_coordinates[1]
 	
-		end_lat = Geocoder.geocode(app_end_address)[0].coordinates[0]
-		end_long = Geocoder.geocode(app_end_address)[0].coordinates[1]
+		end_lat = end_coordinates[0]
+		end_long = end_coordinates[1]
 
 		AUTH = Uber(ENV.CLIENT_ID, ENV.SERVER_TOKEN, ENV.SECRET)
 
