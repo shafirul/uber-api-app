@@ -43,11 +43,14 @@ def determine_estimate():
 	geo_end_address = Geocoder.geocode(app_end_address)
 	if geo_start_address.valid_address and geo_end_address.valid_address:
 	
-		start_lat = geo_start_address[0].coordinates[0]
-		start_long = geo_start_address[0].coordinates[1]
+		start_coordinates = geo_start_address[0].coordinates
+		end_coordinates = geo_end_address[0].coordinates
+
+		start_lat = start_coordinates[0]
+		start_long = start_coordinates[1]
 	
-		end_lat = geo_end_address[0].coordinates[0]
-		end_long = geo_end_address[0].coordinates[1]
+		end_lat = end_coordinates[0]
+		end_long = end_coordinates[1]
 
 		AUTH = Uber(ENV.CLIENT_ID, ENV.SERVER_TOKEN, ENV.SECRET)
 
