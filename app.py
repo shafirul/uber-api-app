@@ -71,7 +71,7 @@ def determine_estimate():
 			return render_template("index.html",  message=message)
 
 	except:
-		message = "Something went wrong. Please make sure you entered valid addresses."
+		message = "Something ELSE went wrong. Please make sure you entered valid addresses."
 
 		return render_template("index.html",  message=message)
 
