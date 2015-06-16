@@ -39,8 +39,8 @@ def determine_estimate():
 ### If the server receives correct input, it will convert to coordinates, make reuqest from Uber API, if not it will display an error message
 
 	# try:
-        geo_start_address = Geocoder.geocode(app_start_address)
-        geo_end_address = Geocoder.geocode(app_end_address)
+	geo_start_address = Geocoder.geocode(app_start_address)
+	geo_end_address = Geocoder.geocode(app_end_address)
 	if geo_start_address.valid_address and geo_end_address.valid_address:
 	
 		start_lat = geo_start_address[0].coordinates[0]
