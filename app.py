@@ -38,42 +38,42 @@ def determine_estimate():
 
 ### If the server receives correct input, it will convert to coordinates, make reuqest from Uber API, if not it will display an error message
 
-	try:
+	# try:
 
-		if Geocoder.geocode(app_start_address).valid_address and Geocoder.geocode(app_end_address).valid_address is True:
-		
-			start_lat = Geocoder.geocode(app_start_address)[0].coordinates[0]
-			start_long = Geocoder.geocode(app_start_address)[0].coordinates[1]
-		
-			end_lat = Geocoder.geocode(app_end_address)[0].coordinates[0]
-			end_long = Geocoder.geocode(app_end_address)[0].coordinates[1]
+	if Geocoder.geocode(app_start_address).valid_address and Geocoder.geocode(app_end_address).valid_address is True:
+	
+		start_lat = Geocoder.geocode(app_start_address)[0].coordinates[0]
+		start_long = Geocoder.geocode(app_start_address)[0].coordinates[1]
+	
+		end_lat = Geocoder.geocode(app_end_address)[0].coordinates[0]
+		end_long = Geocoder.geocode(app_end_address)[0].coordinates[1]
 
-			AUTH = Uber(ENV.CLIENT_ID, ENV.SERVER_TOKEN, ENV.SECRET)
+		AUTH = Uber(ENV.CLIENT_ID, ENV.SERVER_TOKEN, ENV.SECRET)
 
-			estimate = AUTH.get_price_estimate(start_lat, start_long, end_lat, end_long)
+		estimate = AUTH.get_price_estimate(start_lat, start_long, end_lat, end_long)
 
-			services_and_prices = estimate['prices']
+		services_and_prices = estimate['prices']
 
-			for i in range(len(services_and_prices)):
-				uber_price = {}
-				uber_price['service'] = services_and_prices[i]['display_name']
-				uber_price['price'] = services_and_prices[i]['estimate']
-				uber_prices.append(uber_price)
+		for i in range(len(services_and_prices)):
+			uber_price = {}
+			uber_price['service'] = services_and_prices[i]['display_name']
+			uber_price['price'] = services_and_prices[i]['estimate']
+			uber_prices.append(uber_price)
 
-			session['user_travel'] = uber_prices
+		session['user_travel'] = uber_prices
 
-			return render_template("results.html")
+		return render_template("results.html")
 
-		else:
+	else:
 
-			message = "Something went wrong. Please make sure you entered valid addresses."
-
-			return render_template("index.html",  message=message)
-
-	except:
-		message = "Something ELSE went wrong. Please make sure you entered valid addresses."
+		message = "Something went wrong. Please make sure you entered valid addresses."
 
 		return render_template("index.html",  message=message)
+
+	# except:
+	# 	message = "Something ELSE went wrong. Please make sure you entered valid addresses."
+
+	# 	return render_template("index.html",  message=message)
 
 @app.route("/calculation")
 def determine_bac():
