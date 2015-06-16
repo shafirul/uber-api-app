@@ -7,7 +7,7 @@ try:
 except IOError:
     keys = os.environ
 
-client_id = keys['client_id']
-server_token = keys['server_token']
-secret = keys['secret']
-secret_key = keys['secret_key']
+CLIENT_ID = keys['CLIENT_ID']
+SERVER_TOKEN = keys['SERVER_TOKEN']
+SECRET = keys['SECRET']
+SECRET_KEY = keys['SECRET_KEY']

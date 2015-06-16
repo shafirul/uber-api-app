@@ -48,7 +48,7 @@ def determine_estimate():
 			end_lat = Geocoder.geocode(app_end_address)[0].coordinates[0]
 			end_long = Geocoder.geocode(app_end_address)[0].coordinates[1]
 
-			AUTH = Uber(ENV.client_id, ENV.server_token, ENV.secret)
+			AUTH = Uber(ENV.CLIENT_ID, ENV.SERVER_TOKEN, ENV.SECRET)
 
 			estimate = AUTH.get_price_estimate(start_lat, start_long, end_lat, end_long)
 
@@ -139,7 +139,7 @@ def response():
 
 if __name__ == "__main__":
 
-	app.secret_key = ENV.secret_key
+	app.secret_key = ENV.SECRET_KEY
 	app.config['SESSION_TYPE'] = 'filesystem'
 
 	sess.init_app(app)
